@@ -1,110 +1,140 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
+Basic commands on R -- part 2
+
+Simple operations
 ```{r}
-plot(cars)
+length <- 10
+breadth <- 5
+area <- length * breadth
+length
+breadth
+area
 ```
-Basic commands on R
-Assigning variable 
+Here above length was just one number. 
+Now how do we deal with a list of numbers? What if we had several lengths? 
+We will need numeric vector for this
 ```{r}
-x<- 2*8
-x
+length <- c(2, 1, 5)
+length
+
+mynums <- 1:10
+mynums
 ```
-Numeric Vector and operation on it
+Now say you have several breadths as well and you need to calculate the areas
 ```{r}
-y <- c(2.3, 1, 5)
-y
+length <- c(2, 1, 5)
+breadth <- c(2, 2, 2)
+area <- length*breadth
+area
 ```
 
+
 ```{r}
-length(y)
-mode(y)
-class(y)
+length(area)
+mode(area)
+class(area)
 ```
-sequence of integers storing in vector
-```{r}
-mynums <- 10:1
-mynums 
-```
+
 operating on Numeric vector
 ```{r}
-sum(mynums)
-min(mynums)
-max(mynums)
-range(mynums)
+sumarea <- sum(area)
+sumarea
+
+minarea <- min(area)
+minarea
+
+maxarea <- max(area)
+maxarea
+
+rangearea <- range(area)
+rangearea
 ```
+
+
 standard deviation, mean and median 
 ```{r}
-mean(mynums)
-sd(mynums)
-median(mynums)
+mean(area)
+sd(area)
+median(area)
 ```
+
+
 Indexing Numeric vector
 ```{r}
-mynums[2]
-mynums[1:4]	
-mynums[-4] # retrieve everything except fourth position
+area[2]
+area[1:2]	
+area[-2] # retrieve everything except second position
 ```
+
+
 character vectors
 ```{r}
 gender <- c('F', 'M', 'M', 'F', 'F')
 gender
 class(gender)
 ```
-Finding repetation of a character
+
+
+
+Finding repetition of a character
 ```{r}
 gender[gender == 'F']
 ```
+
+DATAFRAMES: say you want to include numeric and character type data 
 operating on Data frames
 ```{r}
 participant <- c('louis', 'paula', 'vincenzo')
 mydf <- data.frame(participant, score = c(67, 85, 32)) 
 mydf
+```
+
+Operating on a dataframe
+```{r}
+colnames(mydf)
 mydf$score
 mean(mydf$score)
+summary(mydf)
 ```
+
 Indexing on Data frame
 ```{r}
 mydf[1,] # first row
-mydf[, 1][2]
+
+mydf[,2] # second column
+
+mydf[, 2][2] # second column, second entry
+
 ```
-Indexing
+
+
+OPENING AND INSPECTING DATASETS
+
+Check datasets that R has in store for you
 ```{r}
-mydf[2, ] # 2nd column
+data()
 ```
-PLOTING
+
+Let's load the "ChickWeight" Dataset: Weight versus age of chicks on different diets
 ```{r}
-mean(mydf$score)
-str(mydf)
-summary(mydf)
+data(ChickWeight)
 ```
-Loading files
+
+Let's take a look at the first few lines of the dataset
 ```{r}
-covid_19 <- read.csv('india_covid_19_statewise_status.csv')
-covid_19
+head(ChickWeight,5)
 ```
-ASSIGNMENT
-Assignment for chapter -1 
 
-1.	Create a Numeric vector with 10 elements ranging between 20 to 30, name it Mynums. Find maximum and minimum element of the vector. Compute Sum operation on the vector put it in a variable z. Find out the 4,5,6 th element of the vector.
-
-2.	Create a 10 element numeric vector and compute mean, median and Standard deviation of the vector. 
-
-3.	Create a dataframe with 5 participants and their math score. Calculate mean of their score.
-
-
-Student name	Math score
-Louis	67
-Paul	86
-Vincenzo	80
-Tim	56
-Dorothy	91
 
 
 
