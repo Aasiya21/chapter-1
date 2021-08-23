@@ -1,0 +1,134 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+
+# Special values: 
+
+1. Inf: stands for Infinity.  
+
+```{r}
+v <- 1/0
+v
+```
+
+2. NaN: Not a Number. A reserved keyword to represent a quantity that 
+cannot be mathematically defined.
+
+```{r}
+v <- 0/0
+v
+```
+3. NA: not available. Used when the data is missing or unavailable in a dataset. 
+
+4. NULL: No value. 
+
+For NaN we actually know what the value is, because it’s something insane like 0/0. 
+
+For NA, we believe that there is supposed to be a value “out there”, but we don’t quite know what it is. 
+
+But for NULL we strongly believe that there is no value at all.
+
+
+# Factor: 
+
+Say 5 students just got their marks cards and the scores were as follows: 
+
+```{r}
+marks <- c(24, 30, 35, 19, 20)
+```
+
+None of them were happy and so they opted for a re-exam. Their marks doubled.
+```{r}
+reexam_marks <- marks*2
+```
+
+Now let's say there are three groups that got three different treatments
+I'll label them
+```{r}
+treatmentGroup <- c(1,1,2,2,3,3)
+class(treatmentGroup)
+```
+Now if I attempt to do some operations like
+```{r}
+treatmentGroup + 1
+```
+And we know this makes no sense given treatment group is a nominal variable
+But how do we make R make sense of this? 
+```{r}
+treatmentGroup <- as.factor(treatmentGroup)
+treatmentGroup
+```
+```{r}
+class(treatmentGroup)
+```
+```{r}
+treatmentGroup + 1
+```
+
+
+
+# Lists
+Lists are like dataframes but are even more flexible. 
+
+Data frames are nice “rectangular” table of data. But Lists have no such constraints. 
+
+```{r}
+Dan <- list( age = 34,
+            nerd = TRUE,
+            parents = c("Joe","Liz") 
+)
+print(Dan)
+```
+
+# Loops
+
+Sometimes you want to repeat a line of code multiple times
+
+A) A WHILE loop:
+
+Say, you want to find the smallest multiple of 17 that is greater than or equal to 1000. 
+Here’s how you could do this:
+
+```{r}
+x <- 0
+while ( x < 1000 ) {
+  x <- x + 17
+}
+print( x )
+```
+ 
+B) A FOR loop:
+```{r}
+for ( i in 1:3 ) {
+  print( "hello" )
+}
+```
+
+
+# Conditional: 
+
+Say if a condition holds (student belongs to IITK), then you ask something (their feedback related to IITK) , else you dont ask anything. How can you do that? 
+
+```{r}
+today <- Sys.Date()       # pull the date from the system clock
+day <- weekdays( today )  # what day of the week is today
+
+# now make a choice depending on the day...
+if ( day == "Monday" ) {
+  print( "Yes I have class today" )
+} else {
+  print( "No class today! Yay!" )
+}
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
